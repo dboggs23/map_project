@@ -1,9 +1,19 @@
-name: Hello-World
-on: [push, workflow_dispatch]
+on:
+  push:
+    branches:
+    - main
+  workflow_dispatch:
 jobs:
-  build:
-    # The type of runner that the job will run on
-    runs-on: self-hosted
-    steps:
-      - name: Say Hello World
-        run: echo Hello, world!
+    deploy:
+        runs-on: self-hosted
+        steps:
+            - name: Deploy to VPS
+              uses: appleboy/ssh-action@master
+              with:
+                  script: |
+                      cd ${{ secrets.PROJECT_PATH }}
+                      git pull origin main
+                      make down
+                      make build
+                      echo "Deleting old image(s)..."
+                      docker image prune -a -f
