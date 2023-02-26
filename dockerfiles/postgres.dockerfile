@@ -1,0 +1,2 @@
+FROM postgres
+ENV DB_PASSWORD 
