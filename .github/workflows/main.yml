@@ -1,21 +1,19 @@
-name: SSH to Ubuntu EC2
+name: Deployment
+
 on:
   push:
     branches:
-      - main
-jobs:
-  ssh-to-ec2:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+    - main
 
-    - name: Set up SSH key
-      uses: LuisEnMarroquin/setup-ssh-action@v2.0.0
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+    - uses: LuisEnMarroquin/setup-ssh-action@v2.0.0
       with:
-        ORIGIN: ${{ secrets.SSH_HOST }}
-        SSHKEY: ${{ secrets.SSH_SECRET }}
-        NAME: production
-        PORT: 22
-        USER: ubuntu
-    - run: ssh production "ls -la;id; echo hehe > h.txt "
+        ORIGIN: ${{ secrets.HOST }} # example.com || 8.8.8.8
+        SSHKEY: ${{ secrets.SSH }} # ----- BEGIN RSA PRIVATE KEY----- ...
+        NAME: ubuntu-s-1vcpu-1gb-nyc1-01
+        PORT: ${{ secrets.PORT }} # 3000
+        USER: ${{ secrets.USER }} # admin
+    - run: ssh production ls --help
