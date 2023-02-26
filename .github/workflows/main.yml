@@ -11,8 +11,10 @@ jobs:
             - name: Deploy to VPS
             
               run: |
-                      git pull origin main
-                      make down
-                      make build
-                      echo "Deleting old image(s)..."
-                      docker image prune -a -f
+                      pwd
+                      ls
+                      #git pull origin main
+                      #make down
+                      #make build
+                      #echo "Deleting old image(s)..."
+                      #docker image prune -a -f
