@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
     - uses: LuisEnMarroquin/setup-ssh-action@v2.0.0
       with:
