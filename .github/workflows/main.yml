@@ -11,7 +11,6 @@ jobs:
             - name: Deploy to VPS
             
               run: |
-                      cd map_project
                       git pull origin main
                       make down
                       make build
