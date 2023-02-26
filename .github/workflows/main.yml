@@ -11,8 +11,7 @@ jobs:
             - name: Deploy to VPS
             
               run: |
-                      pwd
-                      ls
+                      echo $(ls)
                       #git pull origin main
                       #make down
                       #make build
