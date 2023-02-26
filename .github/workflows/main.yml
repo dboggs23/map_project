@@ -1,29 +1,18 @@
-name: CI-CD
 on:
   push:
-    branches: ['main']
+    branches:
+      - main
   workflow_dispatch:
 jobs:
   deploy:
     runs-on: self-hosted
     steps:
-      - name: Deploy to ubuntu
-        uses: appleboy/ssh-action@master
-        with:
-          # VPS IP
-          host: ${{ secrets.SSH_HOST }}
+      - uses: actions/checkout@v2
+      - name: Deploy to VPS
 
-          # VPS username
-          username: ${{ secrets.SSH_USERNAME }}
-
-          # SSH key (copy it from your local machine)
-          key: ${{ secrets.SSH_SECRET }}
-          # SSH port
-          port: ${{ secrets.SSH_PORT }}
-          script: |
-            cd ${{ secrets.PROJECT_PATH }}
-            git pull origin main
-            make down
-            make build
-            echo "Deleting old image(s)..."
-            docker image prune -a -f
+        run: |
+          git pull origin main
+          make down
+          make build
+          echo "Deleting old image(s)..."
+          docker image prune -a -f
