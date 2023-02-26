@@ -10,9 +10,9 @@ jobs:
     steps:
     - uses: LuisEnMarroquin/setup-ssh-action@v2.0.0
       with:
-        #ORIGIN: ${{ secrets.HOST }} 
+        ORIGIN: ${{ secrets.HOST }} 
         SSHKEY: ${{ secrets.SSH }} 
-        #NAME: ubuntu-s-1vcpu-1gb-nyc1-01
-        #PORT: ${{ secrets.PORT }}
-        #USER: ${{ secrets.USER }}
+        NAME: ubuntu-s-1vcpu-1gb-nyc1-01
+        PORT: ${{ secrets.PORT }}
+        USER: ${{ secrets.USER }}
     - run: ssh production ls --help
