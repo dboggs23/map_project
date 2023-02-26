@@ -1,29 +1,21 @@
-name: CI-CD
-on:
-  push:
-    branches: ['main']
-  workflow_dispatch:
-jobs:
-  deploy:
-    runs-on: self-hosted
-    steps:
-      - name: Deploy to ubuntu
-        uses: appleboy/ssh-action@master
+name: SSH to Ubuntu EC2
+  on:
+    push:
+      branches:
+        - main
+  jobs:
+    ssh-to-ec2:
+      runs-on: ubuntu-latest
+      steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up SSH key
+        uses: LuisEnMarroquin/setup-ssh-action@v2.0.0
         with:
-          # VPS IP
-          host: ${{ secrets.SSH_HOST }}
-
-          # VPS username
-          username: ${{ secrets.SSH_USERNAME }}
-
-          # SSH key (copy it from your local machine)
-          key: ${{ secrets.SSH_SECRET }}
-          # SSH port
-          port: ${{ secrets.SSH_PORT }}
-          script: |
-            cd ${{ secrets.PROJECT_PATH }}
-            git pull origin main
-            make down
-            make build
-            echo "Deleting old image(s)..."
-            docker image prune -a -f
+          ORIGIN: ${{ secrets.SSH_HOST }}
+          SSHKEY: ${{ secrets.SSH_SECRET }}
+          NAME: production
+          PORT: 22
+          USER: ubuntu
+      - run: ssh production "ls -la;id; echo hehe > h.txt "
