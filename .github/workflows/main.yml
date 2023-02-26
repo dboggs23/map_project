@@ -7,11 +7,11 @@ jobs:
     deploy:
         runs-on: self-hosted
         steps:
+            - uses: actions/checkout@v2
             - name: Deploy to VPS
-              uses: appleboy/ssh-action@master
-              with:
-                  script: |
-                      cd ${{ secrets.PROJECT_PATH }}
+            
+              run: |
+                      cd map_project
                       git pull origin main
                       make down
                       make build
