@@ -6,3 +6,5 @@ down:
 	docker compose down
 show_logs:
 	docker compose logs
+dev:
+	docker-compose -f docker-compose.development.yml up
