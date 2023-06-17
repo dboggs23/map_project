@@ -1,16 +1,16 @@
 services:
-  #nextjs:
-  #  build:
-  #    context: .
-  #    dockerfile: ./dockerfiles/frontend.development.dockerfile
-  #  volumes:
-  #    - ./frontend:/frontend
-  #    - /frontend/node_modules
-  #    - /frontend/.next
-  #  ports:
-  #    - '3000:3000'
-  #  #environment:
-  #  #  - NODE_ENV=development
+  nextjs:
+    build:
+      context: .
+      dockerfile: ./dockerfiles/frontend.development.dockerfile
+    volumes:
+      - ./frontend:/frontend
+      - /frontend/node_modules
+      - /frontend/.next
+    ports:
+      - '3000:3000'
+    #environment:
+    #  - NODE_ENV=development
   #postgres:
   #  container_name: postgres
   #  image: postgres:latest
@@ -26,11 +26,11 @@ services:
   backend:
     build:
       context: .
-      dockerfile: ./dockerfiles/backend.dockerfile
+      dockerfile: ./dockerfiles/backend.development.dockerfile
     ports:
       - 5000:5000
     volumes:
-      - '/map_backend:/backend'
+      - '/backend:/backend'
 volumes:
   db-data:
     driver: local

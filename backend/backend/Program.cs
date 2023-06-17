@@ -1,26 +1,60 @@
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using backend.Configuration;
+using backend.Models;
+using Microsoft.EntityFrameworkCore;
+using Npgsql;
+using System.Reflection;
 
-namespace backend
+var builder = WebApplication.CreateBuilder(args);
+
+var AllowSpecificOrigins = "_allowSpecificOrigins";
+
+// Add services to the container.
+
+builder.Services.AddCors(options =>
 {
-    public class Program
+    options.AddPolicy(AllowSpecificOrigins, policy =>
     {
-        public static void Main(string[] args)
-        {
-            CreateHostBuilder(args).Build().Run();
-        }
+        policy
+        .WithOrigins("http://localhost:3000", "https://localhost:7046")
+        .AllowAnyHeader()
+        .AllowAnyMethod();
+    });
+});
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
-    }
+builder.Services.AddControllers();
+builder.Services.AddDbContext<MapContext>(opt =>
+    opt.UseNpgsql("Properties"));
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+builder.Configuration.AddEnvironmentVariables()
+                     .AddUserSecrets(Assembly.GetExecutingAssembly(), true);
+
+var databaseSecret = builder.Configuration.GetValue<string>("dbconnectionstring");
+AppSettings.dbConnection = databaseSecret;
+
+var app = builder.Build();
+
+
+
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
+
+//app.UseHttpLogging();
+
+
+
+app.UseHttpsRedirection();
+
+app.UseCors(AllowSpecificOrigins);
+
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.Run();

@@ -1,4 +1,4 @@
-using System;
+using System.Reflection.Metadata.Ecma335;
 
 namespace backend
 {
@@ -10,6 +10,10 @@ namespace backend
 
         public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
 
-        public string Summary { get; set; }
+        public string test() {
+            return "hello";
+            }
+
+        public string? Summary { get; set; }
     }
 }
