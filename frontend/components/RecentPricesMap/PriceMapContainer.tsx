@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { AmbientLight, PointLight, LightingEffect } from '@deck.gl/core'
 import { HexagonLayer } from '@deck.gl/aggregation-layers/typed'
-import { HexagonLayerProps } from '@deck.gl/aggregation-layers/hexagon-layer/hexagon-layer'
 import dynamic from 'next/dynamic'
-import {
-	MostRecentPrices,
-	MostRecentPricesRoot,
-	PropertyResult,
-} from './MostRecentPriceInterface'
+import { MostRecentPricesRoot } from './MostRecentPriceInterface'
 
 const MapComponentDynamic = dynamic(() => import('./PriceMapComponent'), {
 	ssr: false,

@@ -4,11 +4,7 @@ import DeckGL from '@deck.gl/react/typed'
 import { Map } from 'react-map-gl'
 import maplibregl from 'maplibre-gl'
 import { HexagonLayer, PickingInfo, Position } from 'deck.gl/typed'
-import { HexagonLayerProps } from '@deck.gl/aggregation-layers/hexagon-layer/hexagon-layer'
-import {
-	MostRecentPrices,
-	MostRecentPricesRoot,
-} from './MostRecentPriceInterface'
+import { MostRecentPricesRoot } from './MostRecentPriceInterface'
 
 interface Props {
 	layers:
