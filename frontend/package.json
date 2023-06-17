@@ -33,6 +33,6 @@
     "typescript": "5.0.4"
   },
   "devDependencies": {
-    "@danmarshall/deckgl-typings": "^4.9.28"
+    "@danmarshall/deckgl-typings": "^3.5.0"
   }
 }

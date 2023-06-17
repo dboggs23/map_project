@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { AmbientLight, PointLight, LightingEffect } from '@deck.gl/core'
 import { HexagonLayer } from '@deck.gl/aggregation-layers/typed'
 import { HexagonLayerProps } from '@deck.gl/aggregation-layers/hexagon-layer/hexagon-layer'
-import { Position } from 'deck.gl'
 import dynamic from 'next/dynamic'
 import {
 	MostRecentPrices,
@@ -81,7 +80,7 @@ export default function PriceMapContainer() {
 					data: MostRecentPricesRoot[]
 					elevationRange: [number, number]
 					elevationScale: number
-					getPosition: (d: MostRecentPricesRoot) => Position
+					getPosition: (d: MostRecentPricesRoot) => [number, number]
 					pickable: boolean
 					radius: number
 					upperPercentile: number
@@ -120,7 +119,7 @@ export default function PriceMapContainer() {
 				data: results,
 				elevationRange: [0, 3000],
 				elevationScale: data && data.length ? 7 : 0,
-				getPosition: (d: MostRecentPricesRoot): Position => {
+				getPosition: (d: MostRecentPricesRoot): [number, number] => {
 					return [d.propertyResult.longitude, d.propertyResult.latitude]
 					//return [d.propertyResult.latitude, d.propertyResult.longitude]
 				},
