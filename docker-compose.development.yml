@@ -31,6 +31,10 @@ services:
       - 5000:5000
     volumes:
       - '/backend:/backend'
+      - type: bind
+        source: ./super_secret_dev
+        target: /opt/app/static
+
 volumes:
   db-data:
     driver: local

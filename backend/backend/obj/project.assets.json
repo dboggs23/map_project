@@ -1246,6 +1246,23 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
+      "Microsoft.Extensions.Configuration.KeyPerFile/7.0.7": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Configuration": "7.0.0",
+          "Microsoft.Extensions.FileProviders.Physical": "7.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.Configuration.KeyPerFile.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.Configuration.KeyPerFile.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.Extensions.Configuration.UserSecrets/7.0.0": {
         "type": "package",
         "dependencies": {
@@ -5206,6 +5223,25 @@
         "microsoft.extensions.configuration.json.7.0.0.nupkg.sha512",
         "microsoft.extensions.configuration.json.nuspec",
         "useSharedDesignerContext.txt"
+      ]
+    },
+    "Microsoft.Extensions.Configuration.KeyPerFile/7.0.7": {
+      "sha512": "QQi9c9Hb1v7JyD5dZlphJIzg61qdMq4NY1t7YOGBygRNcyy/7QoC4CibeBDIAZmAvu8iMJ2WY8s/PuLxUX3gDA==",
+      "type": "package",
+      "path": "microsoft.extensions.configuration.keyperfile/7.0.7",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net462/Microsoft.Extensions.Configuration.KeyPerFile.dll",
+        "lib/net462/Microsoft.Extensions.Configuration.KeyPerFile.xml",
+        "lib/net7.0/Microsoft.Extensions.Configuration.KeyPerFile.dll",
+        "lib/net7.0/Microsoft.Extensions.Configuration.KeyPerFile.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.Configuration.KeyPerFile.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Configuration.KeyPerFile.xml",
+        "microsoft.extensions.configuration.keyperfile.7.0.7.nupkg.sha512",
+        "microsoft.extensions.configuration.keyperfile.nuspec"
       ]
     },
     "Microsoft.Extensions.Configuration.UserSecrets/7.0.0": {
@@ -10966,6 +11002,7 @@
       "Microsoft.EntityFrameworkCore.InMemory >= 7.0.3",
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.14",
       "Microsoft.EntityFrameworkCore.Tools >= 6.0.14",
+      "Microsoft.Extensions.Configuration.KeyPerFile >= 7.0.7",
       "Microsoft.Extensions.Configuration.UserSecrets >= 7.0.0",
       "Microsoft.VisualStudio.Azure.Containers.Tools.Targets >= 1.17.2",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 6.0.12",
@@ -11032,6 +11069,10 @@
             "suppressParent": "All",
             "target": "Package",
             "version": "[6.0.14, )"
+          },
+          "Microsoft.Extensions.Configuration.KeyPerFile": {
+            "target": "Package",
+            "version": "[7.0.7, )"
           },
           "Microsoft.Extensions.Configuration.UserSecrets": {
             "target": "Package",

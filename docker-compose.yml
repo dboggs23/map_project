@@ -31,7 +31,9 @@ services:
       dockerfile: ./dockerfiles/backend.dockerfile
     ports:
       - 82:80
-   # platform: linux/amd64
+    # platform: linux/amd64
+    volumes:
+      - ./super_secret:/supersecret
 volumes:
   db-data:
     driver: local

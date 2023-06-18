@@ -1,12 +1,15 @@
 using backend.Configuration;
 using backend.Models;
 using Microsoft.EntityFrameworkCore;
-using Npgsql;
+using System.Configuration;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 var AllowSpecificOrigins = "_allowSpecificOrigins";
+string databaseSecret;
+
+string dockerEnvironment = Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER") ?? "false";
 
 // Add services to the container.
 
@@ -24,14 +27,22 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers();
 builder.Services.AddDbContext<MapContext>(opt =>
     opt.UseNpgsql("Properties"));
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Configuration.AddEnvironmentVariables()
                      .AddUserSecrets(Assembly.GetExecutingAssembly(), true);
 
-var databaseSecret = builder.Configuration.GetValue<string>("dbconnectionstring");
+if (dockerEnvironment == "true")
+{
+    builder.Configuration.AddJsonFile("/secrets/secrets.json");
+    databaseSecret = builder.Configuration.GetValue<string>("dbstring");
+}
+else
+{
+    databaseSecret = builder.Configuration.GetValue<string>("dbconnectionstring");
+}
 AppSettings.dbConnection = databaseSecret;
 
 var app = builder.Build();
@@ -44,6 +55,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+
 
 //app.UseHttpLogging();
 
