@@ -37,8 +37,14 @@ builder.Configuration.AddEnvironmentVariables()
 
 if (dockerEnvironment == "true")
 {
-    builder.Configuration.AddJsonFile("/secrets/secrets.json");
-    databaseSecret = builder.Configuration.GetValue<string>("dbstring");
+    try {
+        builder.Configuration.AddJsonFile(path: "/secrets/secrets.json", optional: true);
+        databaseSecret = builder.Configuration.GetValue<string>("dbstring"); 
+    } catch (Exception ex)
+    {
+        Console.WriteLine("Problem connecting to database: " + ex.Message);
+        databaseSecret = "";
+    }
 }
 else
 {
