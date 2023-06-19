@@ -1,3 +1,5 @@
+import { HeatmapLayer, Position } from 'deck.gl/typed'
+
 export interface MostRecentPrices {
 	results: MostRecentPricesRoot[]
 }
@@ -23,4 +25,13 @@ export interface PropertyResult {
 	latitude: number
 	longitude: number
 	propertyEvents: any[]
+}
+
+export interface PriceLayer {
+	id: string
+	data: MostRecentPricesRoot[] | undefined
+	getPosition: (d: any) => Position
+	getWeight: (d: any) => number
+	aggregation: 'MEAN' | 'SUM' | undefined
+	radiusPixels: number
 }
