@@ -3,6 +3,7 @@ import { AmbientLight, PointLight, LightingEffect } from '@deck.gl/core'
 import { HexagonLayer } from '@deck.gl/aggregation-layers/typed'
 import dynamic from 'next/dynamic'
 import { MostRecentPricesRoot } from './MostRecentPriceInterface'
+import { useAppContext } from '@/context/main-context'
 
 const MapComponentDynamic = dynamic(() => import('./PriceMapComponent'), {
 	ssr: false,
@@ -15,9 +16,6 @@ const data = [
 		targetPosition: [-122.41669, 37.781],
 	},
 ]
-
-// Source data JSON
-const DATA_URL = 'http://134.209.116.223/api/Properties' // eslint-disable-line
 
 const ambientLight = new AmbientLight({
 	color: [255, 255, 255],
@@ -66,6 +64,11 @@ const coverage = 1
 
 // DeckGL react component
 export default function PriceMapContainer() {
+	console.log('changed')
+	const { context } = useAppContext()
+	// Source data JSON
+	const DATA_URL = `${context.apiUrl}/api/Properties`
+
 	const [layersState, setLayers] = useState<
 		[
 			HexagonLayer<

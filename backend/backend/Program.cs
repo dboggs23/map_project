@@ -17,10 +17,11 @@ builder.Services.AddCors(options =>
     options.AddPolicy(AllowSpecificOrigins, policy =>
     {
         policy
-        //.WithOrigins("http://localhost:3000", "https://localhost:7046")
-        .AllowAnyOrigin()
+        .WithOrigins("http://localhost:3000", "https://localhost:7046")
+        //.AllowAnyOrigin()
         .AllowAnyHeader()
         .AllowAnyMethod();
+        //if not docker then with origins localhost:3000 and not allow any origins
     });
 });
 
@@ -39,7 +40,7 @@ if (dockerEnvironment == "true")
 {
     try
     {
-        builder.Configuration.AddJsonFile(path: "/secrets/secrets.json", optional: false);
+        builder.Configuration.AddJsonFile(path: "./secrets/secrets.json", optional: false);
         databaseSecret = builder.Configuration.GetValue<string>("dbString");
     }
     catch (Exception ex)

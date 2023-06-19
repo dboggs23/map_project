@@ -15,18 +15,6 @@ services:
 
     ports:
       - 80:80
-  #postgres:
-  #  container_name: postgres
-  #  image: postgres:latest
-  #  environment:
-  #    - POSTGRES_USER=${POSTGRES_USER}
-  #    - POSTGRES_PASSWORD=${POSTGRES_PW}
-  #    #- POSTGRES_DB=${POSTGRES_DB} #optional (specify default database instead of $POSTGRES_DB)
-  #  ports:
-  #    - '5433:5432'
-  #  restart: always
-  #  volumes:
-  #    - db-data:/var/lib/postgresql/data
   backend:
     build:
       context: .
@@ -37,6 +25,3 @@ services:
       - /secrets:/secrets
     environment:
       ASPNETCORE_URLS: http://+:4040
-volumes:
-  db-data:
-    driver: local
