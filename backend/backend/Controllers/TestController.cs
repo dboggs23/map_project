@@ -7,7 +7,7 @@ namespace backend.Controllers
     [ApiController]
     public class TestController : Controller
     {
-        [HttpGet(Name = "Test")]
+        [HttpGet(Name = "test")]
         [Produces("application/json")]
         public string Test()
         {

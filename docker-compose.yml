@@ -10,6 +10,8 @@ services:
     build:
       context: .
       dockerfile: ./dockerfiles/nginx.dockerfile
+    links:
+      - backend
 
     ports:
       - 80:80
@@ -29,11 +31,12 @@ services:
     build:
       context: .
       dockerfile: ./dockerfiles/backend.dockerfile
-    ports:
-      - 82:80
+
     # platform: linux/amd64
     volumes:
-      - ./super_secret:/supersecret
+      - /secrets:/secrets
+    environment:
+      ASPNETCORE_URLS: http://+:4040
 volumes:
   db-data:
     driver: local

@@ -16,6 +16,8 @@ RUN dotnet build "backend.csproj" -c Release -o /app/build
 FROM build AS publish
 RUN dotnet publish "backend.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
+COPY /secrets ./secrets
+
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .

@@ -1,7 +1,6 @@
 using backend.Configuration;
 using backend.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Configuration;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -34,13 +33,16 @@ builder.Services.AddSwaggerGen();
 
 builder.Configuration.AddEnvironmentVariables()
                      .AddUserSecrets(Assembly.GetExecutingAssembly(), true);
+//builder.WebHost.UseUrls("http://localhost:4040");
 
 if (dockerEnvironment == "true")
 {
-    try {
-        builder.Configuration.AddJsonFile(path: "/secrets/secrets.json", optional: true);
-        databaseSecret = builder.Configuration.GetValue<string>("dbstring"); 
-    } catch (Exception ex)
+    try
+    {
+        builder.Configuration.AddJsonFile(path: "/secrets/secrets.json", optional: false);
+        databaseSecret = builder.Configuration.GetValue<string>("dbString");
+    }
+    catch (Exception ex)
     {
         Console.WriteLine("Problem connecting to database: " + ex.Message);
         databaseSecret = "";
@@ -65,7 +67,7 @@ if (app.Environment.IsDevelopment())
 
 
 
-//app.UseHttpLogging();
+app.UseHttpLogging();
 
 
 
