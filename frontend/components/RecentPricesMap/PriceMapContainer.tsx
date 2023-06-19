@@ -17,7 +17,7 @@ const data = [
 ]
 
 // Source data JSON
-const DATA_URL = 'https://localhost:7046/api/Properties' // eslint-disable-line
+const DATA_URL = 'http://134.209.116.223/api/Properties' // eslint-disable-line
 
 const ambientLight = new AmbientLight({
 	color: [255, 255, 255],
