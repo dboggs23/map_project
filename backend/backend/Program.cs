@@ -40,7 +40,8 @@ if (dockerEnvironment == "true")
 {
     try
     {
-        builder.Configuration.AddJsonFile(path: "./secrets/secrets.json", optional: false);
+        //current if running local docker, remove period
+        builder.Configuration.AddJsonFile(path: "/secrets/secrets.json", optional: false);
         databaseSecret = builder.Configuration.GetValue<string>("dbString");
     }
     catch (Exception ex)
