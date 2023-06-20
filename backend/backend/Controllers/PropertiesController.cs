@@ -5,16 +5,23 @@ using backend.Services;
 
 namespace backend.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class PropertiesController : ControllerBase
     {
 
-        [HttpGet(Name = "GetProperties")]
+        [HttpGet(Name = "allProperties")]
         [Produces("application/json")]
         public List<MostRecentPrice> GetProperties()
         {
             return backend.Services.PropertyService.MostRecentPrices();
+        }
+
+        [HttpGet(Name = "propertiesByYear")]
+        [Produces("application/json")]
+        public List<PropertiesGroupedByYear> PropertiesByYear()
+        {
+            return backend.Services.PropertyService.PropertiesByYearMethod();
         }
     }
 }

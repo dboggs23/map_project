@@ -30,6 +30,7 @@ from sqlalchemy.orm import sessionmaker
 import urllib.parse
 from models.models import Property, PropertyEvent 
 import glob
+from fake_useragent import UserAgent
 
 load_dotenv()
 dbname=os.environ.get("POSTGRES_DB")
@@ -96,6 +97,8 @@ def initDriver():
     try:
         chromeDriverPath = 'C:\ChromeDriver\chromedriver.exe'
         service = Service(chromeDriverPath)
+        ua = UserAgent(browsers=['chrome'])
+        user_agent = ua
 
         download_dir = os.path.join(os.getcwd(), 'scraping\download_results')
         options = Options()
@@ -114,6 +117,8 @@ def initDriver():
         options.add_argument('--ignore-ssl-errors')
         options.add_experimental_option('excludeSwitches', ['disable-component-update',
                                                             'ignore-certificate-errors'])
+        #options.add_argument('--headless')
+        options.add_argument(f"user-agent={user_agent}")
         #options.add_argument('--blink-settings=imagesEnabled=false')
         #service=Service(ChromeDriverManager(version='113.0.5672.127').install())
         driver = webdriver.Chrome(service=service, options=options, desired_capabilities=caps)
@@ -349,6 +354,9 @@ def open_details_page_and_scrape(url):
     time.sleep(3)
     print('going to try to find click element')
 
+    driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
+
+
     #WebDriverWait(driver, 30).until(lambda d: d.execute_script("return document.readyState") == "complete")
     
     try:
@@ -418,7 +426,7 @@ def scrapingMain():
     
     #countyZipCodes = zip_codes_by_county()
     # for testing 
-    countyZipCodes = [63104, 63139,63116, 63110, 63109, 63104, 63117, 63143,63118,63108,63112,63113,63106,63107,63115,63120,63147,63102,63101,63143,63144,63117,63105,63130,63133,63121,63114,63132,63124, 63122,63131,63119,63123]
+    countyZipCodes = [63104, 63139,63116, 63110, 63109, 63117, 63143,63118,63108,63112,63113,63106,63107,63115,63120,63147,63102,63101,63143,63144,63117,63105,63130,63133,63121,63114,63132,63124, 63122,63131,63119,63123]
     for zipCode in countyZipCodes:
         driver = initDriver()
         url = f"https://www.redfin.com/zipcode/{zipCode}"

@@ -15,7 +15,7 @@ const mapStyle =
 export default function PriceMapContainer() {
 	const { context } = useAppContext()
 	// Source data JSON
-	const DATA_URL = `${context.apiUrl}/api/Properties`
+	const DATA_URL = `${context.apiUrl}/api/Properties/Properties`
 
 	const [layersState, setLayers] = useState<[HeatmapLayer<PriceLayer>]>()
 
