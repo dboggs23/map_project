@@ -1,5 +1,5 @@
 build:
-	docker compose up --build -d --remove-orphans
+	docker compose up --build -d --remove-orphans certbot certonly --webroot --webroot-path /var/www/certbot/ -d daltonboggs.dev
 up:
 	docker compose up -d
 down:
