@@ -7,7 +7,9 @@ RUN npm install --global pm2
 
 COPY ../frontend/package*.json .
 
-RUN npm install --production
+RUN npm cache clean --force && \
+    npm install -g npm@latest && \
+    npm install
 
 COPY ../frontend .
 
