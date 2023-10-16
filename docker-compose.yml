@@ -13,8 +13,7 @@ services:
     links:
       - backend
     volumes:
-      - ./certbot/www:/var/www/certbot/:ro
-      - ./certbot/conf/:/etc/nginx/ssl/:ro
+      - /home/dalton/cert:/var/www/certbot/
 
     ports:
       - 80:80
@@ -28,8 +27,3 @@ services:
       - /secrets:/secrets
     environment:
       ASPNETCORE_URLS: http://+:4040
-  certbot:
-    image: certbot/certbot
-    volumes:
-      - ./certbot/www/:/var/www/certbot/:rw
-      - ./certbot/conf/:/etc/letsencrypt/:rw
