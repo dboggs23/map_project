@@ -29,7 +29,7 @@ services:
       - /secrets:/secrets
     environment:
       ASPNETCORE_URLS: http://+:4040
-    expose:
+    ports:
       - 4040:4040
   letsencrypt:
     container_name: "certbot"
