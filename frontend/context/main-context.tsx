@@ -16,7 +16,7 @@ export function AppContextProvider({ children }) {
 	if (process.env.NEXT_PUBLIC_NODE_ENV == 'development') {
 		context.apiUrl = 'https://localhost:7046'
 	} else {
-		context.apiUrl = 'http://134.209.116.223'
+		context.apiUrl = 'https://daltonboggs.dev'
 	}
 
 	return (
