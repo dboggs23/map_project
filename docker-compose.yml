@@ -15,6 +15,8 @@ services:
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt:ro
       - /tmp/acme-challenge:/tmp/acme-challenge
+      - ./etc/nginx/templates:/etc/nginx/templates:ro
+      - ./etc/letsencrypt:/etc/letsencrypt:ro
 
     ports:
       - 80:80
@@ -33,11 +35,16 @@ services:
       - 4040:4040
   certbot:
     container_name: 'certbot'
-    image: certbot/certbot
-    command: sh -c "certbot certonly --webroot -w /tmp/acme-challenge/ -d daltonboggs.dev --text --agree-tos --email dalton2369@gmail.com --rsa-key-size 4096 --verbose --keep-until-expiring --preferred-challenges=http"
-    entrypoint: ''
+    image: certbot/certbot:latest
+    command: >-
+      certonly --reinstall --webroot --webroot-path=/var/www/certbot
+      --email dalton2369@gmail.com --agree-tos --no-eff-email
+      -d daltonboggs.dev    entrypoint: ''
     volumes:
-      - '/etc/letsencrypt:/etc/letsencrypt'
+      - ./etc/letsencrypt:/etc/letsencrypt
       - '/tmp/acme-challenge:/tmp/acme-challenge'
+      - ./certbot/data:/var/www/certbot
     environment:
       - TERM=xterm
+    depends_on:
+      - nginx

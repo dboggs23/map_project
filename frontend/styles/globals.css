@@ -3,25 +3,76 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+	--foreground-rgb: 0, 0, 0;
+	--background-start-rgb: 214, 219, 220;
+	--background-end-rgb: 255, 255, 255;
+
+	--font-family-sans: 'nunito', -apple-system, BlinkMacSystemFont, Roboto,
+		sans-serif;
+	/*--handwritten: "Amatic";
+  --monospace: "JosefinSans";
+  --handwritten-bold: "AmaticBold";
+  --serif: "Garamond";*/
+
+	--color-black: #202123;
+	--color-dark-gray: #32373e;
+	--color-gray: #697a90;
+	--color-light-gray: #b4bcc7;
+	--color-very-light-gray: #e7ebed;
+	--color-white: #fff;
+	--color-accent: #8ee4af;
+
+	/* dark mode colors*/
+	--dark-blue: #126e82;
+	--light-yellow: #f4e185;
+	--olive: #379683;
+	--green: #5cdb95;
+	--light-green: #8ee4af;
+	--ivory-green: #edf5e1;
+	--black: #2e2e2e;
+	--white: #cdcfd1;
+
+	/* Typography */
+	--unit: 16;
+	--font-micro-size: calc(10 / var(--unit) * 1rem); /* 10px */
+	--font-micro-line-height: calc(12 / 10); /* 12px */
+	--font-small-size: calc(16 / var(--unit) * 1rem); /* 14px */
+	--font-small-line-height: calc(21 / 14); /* 21px */
+	--font-base-size: 1em; /* 16px */
+	--font-base-line-height: calc(24 / var(--unit)); /* 24px */
+	--font-large-size: calc(18 / var(--unit) * 1rem); /* 18px */
+	--font-large-line-height: calc(27 / 18); /* 27px */
+
+	--font-title3-size: calc(21 / var(--unit) * 1rem); /* 21px */
+	--font-title3-line-height: calc(30 / 21); /* 30px */
+	--font-title2-size: calc(24 / var(--unit) * 1rem); /* 24px */
+	--font-title2-line-height: calc(33 / 24); /* 33px */
+	--font-title1-size: calc(49 / var(--unit) * 1rem); /* 49px */
+	--font-title1-line-height: calc(57 / 49); /* 57px */
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+	:root {
+		--foreground-rgb: 255, 255, 255;
+		--background-start-rgb: 0, 0, 0;
+		--background-end-rgb: 0, 0, 0;
+
+		--color-black: red;
+		--color-dark-gray: #32373e;
+		--color-gray: #697a90;
+		--color-light-gray: #b4bcc7;
+		--color-very-light-gray: #e7ebed;
+		--color-white: #fff;
+		--color-accent: #5a9e6a;
+	}
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+	color: rgb(var(--foreground-rgb));
+	background: linear-gradient(
+			to bottom,
+			transparent,
+			rgb(var(--background-end-rgb))
+		)
+		rgb(var(--background-start-rgb));
 }
