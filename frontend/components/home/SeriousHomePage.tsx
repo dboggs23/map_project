@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 import { SocialIcon } from 'react-social-icons'
 import { InterestsIcons, FleurDeLis } from './InterestsIcons'
 import { useTheme } from '@emotion/react'
@@ -29,40 +29,39 @@ const HomeStyled = styled.div`
 	}
 `
 
-const StyledContainer = styled.div`
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	margin-top: 30px;
-
-	h1 {
-		margin: 10px 0;
-		text-decoration: underline;
-		text-decoration-thickness: 2px;
-		text-decoration-line: solid;
-		text-decoration-color: ${({ theme }) => theme.colors.lightGreen};
-	}
-	h3 {
-		margin-top: 30px;
-		align-self: baseline;
-	}
-	h5 {
-		margin: 30px 0;
-	}
-	img {
-		margin-left: 5px;
-		margin-bottom: 2.5px;
-		width: 30px;
-		height: auto;
-	}
-	.archHolder {
-		display: flex;
-		align-items: 'flex-start';
-	}
-`
-
 function SeriousHome() {
 	const theme = useTheme()
+	console.log(theme)
+	const StyledContainer = styled.div`
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin-top: 30px;
+		h1 {
+			margin: 10px 0;
+			text-decoration: underline;
+			text-decoration-thickness: 2px;
+			text-decoration-line: solid;
+			text-decoration-color: ${({ theme }) => theme.colors.lightGreen};
+		}
+		h3 {
+			margin-top: 30px;
+			align-self: baseline;
+		}
+		h5 {
+			margin: 30px 0;
+		}
+		img {
+			margin-left: 5px;
+			margin-bottom: 2.5px;
+			width: 30px;
+			height: auto;
+		}
+		.archHolder {
+			display: flex;
+			align-items: 'flex-start';
+		}
+	`
 
 	return (
 		<HomeStyled theme={theme}>

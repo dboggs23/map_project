@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 // import bike from '../../assets/bike.svg'
 // import books from '../../assets/books.svg'
 // import coffee from '../..//assets/coffee.svg'
