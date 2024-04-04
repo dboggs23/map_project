@@ -89,7 +89,7 @@ export default function FunHomePage() {
 					<img
 						className='meow'
 						src='/kitten.gif'
-						alt='animation of a kitten sleeping on a couch'
+						alt='animation of a cute kitten sleeping on a couch'
 					/>
 				</div>
 				<img
