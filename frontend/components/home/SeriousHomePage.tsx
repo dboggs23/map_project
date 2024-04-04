@@ -67,9 +67,9 @@ function SeriousHome() {
 	return (
 		<HomeStyled theme={theme}>
 			<StyledContainer theme={theme}>
-				<h1>I'm Dalton.</h1>
+				<h1>I&apos;m Dalton.</h1>
 				<div className='archHolder'>
-					<h3>I'm a developer who lives in St. Louis.</h3>
+					<h3>I&apos;m a developer who lives in St. Louis.</h3>
 					<FleurDeLis />
 				</div>
 
