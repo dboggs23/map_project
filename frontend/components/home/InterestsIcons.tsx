@@ -36,10 +36,6 @@ const IconsContainer = styled.div`
 	}
 	.interests {
 		width: 50px;
-		/* filter: ${(props) =>
-			props.isChecked
-				? 'invert(100%) sepia(1%) saturate(0%) hue-rotate(233deg) brightness(106%) contrast(101%)'
-				: ''}; */
 	}
 	.icons {
 		display: flex;
@@ -61,10 +57,6 @@ const Flower = styled.img`
 	height: 50px;
 	//aspect-ratio: 1/1;
 	//object-fit: none;
-	/* filter: ${(props) =>
-		props.isChecked
-			? 'invert(100%) sepia(1%) saturate(0%) hue-rotate(233deg) brightness(106%) contrast(101%)'
-			: ''}; */
 `
 
 function InterestsIcons() {
