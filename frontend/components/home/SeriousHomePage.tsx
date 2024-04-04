@@ -42,7 +42,7 @@ function SeriousHome() {
 			text-decoration: underline;
 			text-decoration-thickness: 2px;
 			text-decoration-line: solid;
-			text-decoration-color: ${({ theme }) => theme.colors.lightGreen};
+			text-decoration-color: #8ee4af;
 		}
 		h3 {
 			margin-top: 30px;
